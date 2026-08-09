@@ -17,15 +17,12 @@
 # MODULE_INS_DIR  (INSTALL_MOD_PATH)
 
 # Init all variables
-KERNEL_SRC_DIR := $(LICHEE_KERN_DIR)
-CONFIG_OS_TYPE := $(LICHEE_PLATFORM)
 MODULE_INS_DIR := $(LICHEE_MOD_DIR)
-KERNEL_OUT_DIR := $(O)
 
-# Re-setup it
-KERNEL_SRC_DIR := $(word 1, $(KERNEL_SRC_DIR) $(KERNEL_SRC))
-KERNEL_OUT_DIR := $(word 1, $(KERNEL_OUT_DIR) $(KERNEL_SRC_DIR))
-CONFIG_OS_TYPE := $(word 1, $(CONFIG_OS_TYPE) android)
+# Standalone kernel build: fall back to kbuild srctree/objtree when Tina vars unset.
+KERNEL_SRC_DIR := $(firstword $(LICHEE_KERN_DIR) $(KERNEL_SRC) $(srctree))
+KERNEL_OUT_DIR := $(firstword $(KERNEL_OUT_DIR) $(O) $(objtree))
+CONFIG_OS_TYPE := $(firstword $(LICHEE_PLATFORM) linux)
 
 ifeq ($(KERNEL_SRC_DIR),)
   $(error KERNEL_SRC_DIR not setup)
