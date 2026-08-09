@@ -18,14 +18,11 @@
 # Init all variables
 ccflags-y += -I $(srctree)/include/linux/
 
-KERNEL_SRC_DIR := $(LICHEE_KERN_DIR)
 MODULE_INS_DIR := $(LICHEE_MOD_DIR)
-KERNEL_OUT_DIR := $(O)
-#$(info 1 $(SOC),$(KERNEL_SRC_DIR), $(KERNEL_OUT_DIR) )
 
-# Re-setup it
-KERNEL_SRC_DIR := $(word 1, $(KERNEL_SRC_DIR) $(KERNEL_SRC))
-KERNEL_OUT_DIR := $(word 1, $(KERNEL_OUT_DIR) $(KERNEL_SRC_DIR))
+# Standalone kernel build: fall back to kbuild srctree/objtree when Tina vars unset.
+KERNEL_SRC_DIR := $(firstword $(LICHEE_KERN_DIR) $(KERNEL_SRC) $(srctree))
+KERNEL_OUT_DIR := $(firstword $(KERNEL_OUT_DIR) $(O) $(objtree))
 
 ifeq ($(KERNEL_SRC_DIR),)
   $(error KERNEL_SRC_DIR not setup)
