@@ -22,7 +22,7 @@
 # linux build system bootstrap for out-of-tree module
 
 # default to building for the host
-ARCH ?= $(shell uname -m)
+ARCH ?= arm64
 
 ifeq ($(KDIR),)
 $(error Must specify KDIR to point to the kernel to target))

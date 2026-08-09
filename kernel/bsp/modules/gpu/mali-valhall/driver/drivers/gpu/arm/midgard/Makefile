@@ -270,10 +270,10 @@ ifeq ($(CONFIG_GCOV_KERNEL),y)
 endif
 
 all:
-	$(MAKE) -C $(KDIR) M=$(CURDIR) $(MAKE_ARGS) EXTRA_CFLAGS="$(EXTRA_CFLAGS)" KBUILD_EXTRA_SYMBOLS="$(EXTRA_SYMBOLS)" modules
+	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) $(MAKE_ARGS) EXTRA_CFLAGS="$(EXTRA_CFLAGS)" KBUILD_EXTRA_SYMBOLS="$(EXTRA_SYMBOLS)" modules
 
 modules_install:
-	$(MAKE) -C $(KDIR) M=$(CURDIR) $(MAKE_ARGS) modules_install
+	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) $(MAKE_ARGS) modules_install
 
 clean:
-	$(MAKE) -C $(KDIR) M=$(CURDIR) $(MAKE_ARGS) clean
+	$(MAKE) ARCH=$(ARCH) -C $(KDIR) M=$(CURDIR) $(MAKE_ARGS) clean
