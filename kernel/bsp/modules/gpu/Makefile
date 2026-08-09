@@ -19,9 +19,10 @@
 # Init all variables
 MODULE_INS_DIR := $(LICHEE_MOD_DIR)
 
-# Standalone kernel build: fall back to kbuild srctree/objtree when Tina vars unset.
-KERNEL_SRC_DIR := $(firstword $(LICHEE_KERN_DIR) $(KERNEL_SRC) $(srctree))
-KERNEL_OUT_DIR := $(firstword $(KERNEL_OUT_DIR) $(O) $(objtree))
+# Kernel tree: kbuild srctree/objtree, or ../../ from this Makefile (ROCKNIX post-build).
+_GPU_KROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../..)
+KERNEL_SRC_DIR := $(firstword $(LICHEE_KERN_DIR) $(KERNEL_SRC) $(KDIR) $(srctree) $(_GPU_KROOT))
+KERNEL_OUT_DIR := $(firstword $(KERNEL_OUT_DIR) $(O) $(objtree) $(_GPU_KROOT))
 CONFIG_OS_TYPE := $(firstword $(LICHEE_PLATFORM) linux)
 
 ifeq ($(KERNEL_SRC_DIR),)
