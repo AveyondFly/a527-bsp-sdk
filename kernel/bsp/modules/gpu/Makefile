@@ -21,8 +21,8 @@ MODULE_INS_DIR := $(LICHEE_MOD_DIR)
 
 # Kernel tree: kbuild srctree/objtree, or ../../ from this Makefile (ROCKNIX post-build).
 _GPU_KROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../..)
-KERNEL_SRC_DIR := $(firstword $(LICHEE_KERN_DIR) $(KERNEL_SRC) $(KDIR) $(srctree) $(_GPU_KROOT))
-KERNEL_OUT_DIR := $(firstword $(KERNEL_OUT_DIR) $(O) $(objtree) $(_GPU_KROOT))
+KERNEL_SRC_DIR := $(firstword $(filter-out,$(LICHEE_KERN_DIR) $(KERNEL_SRC) $(KDIR) $(srctree)) $(_GPU_KROOT))
+KERNEL_OUT_DIR := $(firstword $(filter-out,$(KERNEL_OUT_DIR) $(O) $(objtree)) $(_GPU_KROOT))
 CONFIG_OS_TYPE := $(firstword $(LICHEE_PLATFORM) linux)
 
 ifeq ($(KERNEL_SRC_DIR),)
