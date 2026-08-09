@@ -21,7 +21,7 @@ ccflags-y += -I $(srctree)/include/linux/
 MODULE_INS_DIR := $(LICHEE_MOD_DIR)
 
 # Standalone kernel build: fall back to kbuild srctree/objtree when Tina vars unset.
-_NAND_KROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../..)
+_NAND_KROOT := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/../../..)
 KERNEL_SRC_DIR := $(firstword $(filter-out,$(LICHEE_KERN_DIR) $(KERNEL_SRC) $(srctree)) $(_NAND_KROOT))
 KERNEL_OUT_DIR := $(firstword $(filter-out,$(KERNEL_OUT_DIR) $(O) $(objtree)) $(_NAND_KROOT))
 
