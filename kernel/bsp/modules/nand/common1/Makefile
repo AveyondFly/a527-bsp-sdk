@@ -1,5 +1,6 @@
 
 ccflags-y += -I $(srctree)/include/linux/
+ccflags-y += -I $(srctree)/$(src)
 
 ifeq ($(CC),clang)
 ccflags-y += -fsanitize-blacklist=$(srctree)/$(src)/blacklist.txt
