@@ -1,0 +1,79 @@
+1.codes info
+  1.1.branch
+      sunxi-dev
+
+  1.2.patch info
+      commit 21b76c09fd13d8e79d33b0fc162946f2d70a6482 (HEAD -> sunxi-dev)
+      Author: zhengwanyu <zhengwanyu@allwinnertech.com>
+      Date:   Tue May 27 21:38:06 2025 +0800
+
+      mali-valhall: gbm support gbm_bo_create_with_modifiers2
+
+      Change-Id: I353b3cb6ce8f6ae93d1ae97c56988ddd9b100c40
+
+
+      commit 573c8af3f21f2ad64bf586291627e7dfccd13487 (HEAD -> sunxi-dev)
+      Author: zhengwanyu <zhengwanyu@allwinnertech.com>
+      Date:   Tue May 27 20:20:39 2025 +0800
+
+      mali-valhall: fix AFBC compatible issue
+
+      Change-Id: I50c1b05b7fef6d80724983f30fe1782573a8ea4c
+
+2.build info
+  2.1.configs
+      sunxi-64-linux-wayland.config
+            PLATFORM_SUNXI_64=y
+            LINUX=y
+            GPU_G57=y
+            HWVER_R0P1=y
+            WSIALLOC_ALLOCATOR_NAME="dmabufheap"
+
+            EGL=y
+            WINSYS_WAYLAND_PRIMARY=y
+            WINSYS_WAYLAND=y
+            WAYLAND_SERVER=y
+            WAYLAND_DMABUF_PROTOCOL=y
+            WAYLAND_EXPLICIT_SYNCHRONIZATION_PROTOCOL=y
+            WAYLAND_AFBC=y
+            WINSYS_GBM=y
+
+            AFBC=y
+
+            GLES=y
+            VULKAN=y
+            VULKAN_LINUX_LOADER_PATH="../thirdparty/build_result/vulkan_loader/lib"
+            VULKAN_WAYLAND=y
+ 
+            PKG_CONFIG=y
+            PKG_CONFIG_PATH="%MCONFIGDIR%/thirdparty/build_result/libdrm/lib/pkgconfig:%MCONFIGDIR%/thirdparty/build_result/vulkan_loader/lib/pkgconfig:%MCONFIGDIR%/thirdparty/build_result/wayland/lib/pkgconfig:%MCONFIGDIR%/thirdparty/build_    result/wayland-protocols/share/pkgconfig:%MCONFIGDIR%/thirdparty/build_result/wayland-scanner/lib/x86_64-linux-gnu/pkgconfig"
+            GBM_CFLAGS="-I../include"
+            GBM_LDFLAGS="-Linstall/lib"
+            LIBDRM_LDLIBS="-lgbm"
+
+
+  2.2.toolschain
+      aarch64-none-linux-gnu-gcc (GNU Toolchain for the A-profile Architecture 10.3-2021.07 (arm-10.29)) 10.3.1 20210621
+
+3.vulkan loader info
+  Vulkan-Loader-vulkan-sdk-1.3.296
+
+4.vulkan wsi info
+  vulkan-wsi-layer
+
+5.display system
+  WAYLAND
+
+6.md5sum
+8322dc41e5fd29ee2ac16ca5c7f0193a  ./aarch64-none-linux-gnu/lib64/vulkan/libvulkan.so
+18d9a3bbb05f0b315ec190b88e55e9a6  ./aarch64-none-linux-gnu/lib64/gles2/libGLESv2.so
+ebb8243b717dcef7e88747a3a2e66746  ./aarch64-none-linux-gnu/lib64/vulkan_wsi/libVkLayer_window_system_integration.so
+2d12d33a2253b39661dccaf8c2b10b25  ./aarch64-none-linux-gnu/lib64/wayland-egl/libwayland-egl.so
+b32c3a68525da45108390815ac0a2e81  ./aarch64-none-linux-gnu/lib64/mali/libmali.so
+7c6af2d8ec0f8db852f87998750b1f48  ./aarch64-none-linux-gnu/lib64/gbm/libgbm.so
+a954ade88d07aa92c6fb75d681dccab2  ./aarch64-none-linux-gnu/lib64/egl/libEGL.so
+324ca39bfd9f447f5232cd8333977ad4  ./aarch64-none-linux-gnu/lib64/gles1/libGLESv1_CM.so
+3689bd3980dc5d811cfa1691dbe24ef7  ./aarch64-none-linux-gnu/lib64/cl/libOpenCL.so
+
+7.provider
+zhengwanyu@allwinnertech.com

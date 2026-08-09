@@ -1,0 +1,8 @@
+{
+  "file_format_version" : "1.0.0",
+  "ICD": {
+      "library_path" : "/usr/lib/libmali.so",
+      "api_version" : "1.2.0",
+      "device_type" : "VK_DEVICE_TYPE_PHYSICAL_DEVICE"
+  }
+}
